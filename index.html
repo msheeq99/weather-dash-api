@@ -60,9 +60,39 @@
 
 <body>
 <header>
-    <h1>Weather Dashboard</h1>
+    <div>
+        <h1>Weather Dashboard</h1>
+    </div>
 </header>
+<div class="modal-dialog modal-dialog-centered">
+      <!-- Weather container -->
+      <section id="weatherContainer">
+        <div class="weatherCard" id="todaysWeather">
+          <h2>
+            <strong><span id="cityName">City Name</span></strong>
+            <strong><span id="todaysDate">Todays Date</span></strong>
+          </h2>
+          <img id="weatherIcon" src="" alt="weather representation icon" />
+          <p><span id="temp">Temperature</span></p>
+          <p><span id="wind">Wind</span></p>
+          <p><span id="humidity">Humidity</span></p>
+          <p>UV Index: <span id="UV"></span></p>
+        </div>
+        <div class="weatherCard"></div>
+        <div class="weatherCard"></div>
+        <div class="weatherCard"></div>
+        <div class="weatherCard"></div>
+        <div class="weatherCard"></div>
+      </section>
+  </div>
+<form id="citySearch">
+    <label id="searchLabel" for="cityInput">Search by City:</label>
+    <input id="cityInput" type="text" placeholder="e.g. Birmingham, GB" />
+    <button id="citySearchButton">Search</button>
+    <p>Recent searches:</p>
+    <ul id="searchHistory"></ul>
+  </form>
 
-
+<script src="/Assets/js/script.js"></script>
 </body>
 </html>

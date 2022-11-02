@@ -1,0 +1,19 @@
+body {
+    font-family: "Poppins";
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+  }
+
+header {
+    position: relative;
+    background-color:black;
+}
+
+header h1 {
+    font-size: 30px;
+    color: white;
+    text-align: end;
+    position: relative;
+    right: 50px;
+}
