@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="description" content="Weather application - user can search by city to find the current weather plus a 5 day forecast anywhere in world. Uses OpenWeather API."/>
     <meta name="Author" content="Mohamud Sheeq" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
@@ -64,7 +65,7 @@
         <h1>Weather Dashboard</h1>
     </div>
 </header>
-<div class="modal-dialog modal-dialog-centered">
+
       <!-- Weather container -->
       <section id="weatherContainer">
         <div class="weatherCard" id="todaysWeather">
@@ -84,7 +85,7 @@
         <div class="weatherCard"></div>
         <div class="weatherCard"></div>
       </section>
-  </div>
+  <aside>
 <form id="citySearch">
     <label id="searchLabel" for="cityInput">Search by City:</label>
     <input id="cityInput" type="text" placeholder="e.g. Birmingham, GB" />
@@ -92,7 +93,7 @@
     <p>Recent searches:</p>
     <ul id="searchHistory"></ul>
   </form>
-
+</aside>
 <script src="/Assets/js/script.js"></script>
 </body>
 </html>
