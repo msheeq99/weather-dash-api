@@ -3,8 +3,8 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
-  }
-  :root {
+}
+:root {
     --white: #ffffff;
     --off-white: #e5e5e5;
     --transp-white-1: rgba(255, 255, 255, 0.25);
@@ -12,49 +12,49 @@
     --blue-1: #62b8f5;
     --blue-2: #4475ef;
     --shadow: rgba(3, 46, 87, 0.2);
-  }
-  body {
+}
+body {
     height: 100vh;
     background: linear-gradient(135deg, var(--blue-1), var(--blue-2));
-  }
+}
   
 .search{
     display: flex;
     justify-content: center;
-  }
+}
   
-  .weather {
+.weather {
     display: flex;
     justify-content: center;
     text-align: center;
     margin: 2em 0 2em 0;
   }
   
-  .weather.loading{
+.weather.loading{
       visibility: hidden;
       max-height: 20px;
       position: relative;
-  }
+}
   
-  .weather.loading::after {
+.weather.loading::after {
       visibility: visible;
       content: "loading...";
       color: white;
       position: absolute;
       top: 0;
       left: 20px;
-  }
+}
   
-  .fiveDay {
+.fiveDay {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
-  }
+x}
   
   
-  .forecastDaterHeader {
+.forecastDaterHeader {
     font-size: 1.5rem;
     padding: var(--padding);
     padding-bottom: 0;
     margin-bottom: .5rem;
-  }
+}
