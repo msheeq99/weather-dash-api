@@ -1,56 +1,100 @@
-//Assign the copied API key to the 'key' variable
-key = "04b3d357a14907eeb4df2fa9bad23dd9";
-
-let result = document.getElementById("result");
-let searchBtn = document.getElementById("search-btn");
-let cityRef = document.getElementById("city");
-
-//Function to fetch weather details from api and display them
-let getWeather = () => {
-  let cityValue = cityRef.value;
-  //If input field is empty
-  if (cityValue.length == 0) {
-    result.innerHTML = `<h3 class="msg">Please enter a city name</h3>`;
-  }
-  //If input field is NOT empty
-  else {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`;
-    //Clear the input field
-    cityRef.value = "";
-    fetch(url)
-      .then((resp) => resp.json())
-      //If city name is valid
-      .then((data) => {
-        console.log(data);
-        console.log(data.weather[0].icon);
-        console.log(data.weather[0].main);
-        console.log(data.weather[0].description);
-        console.log(data.name);
-        console.log(data.main.temp_min);
-        console.log(data.main.temp_max);
-        result.innerHTML = `
-        <h2>${data.name}</h2>
-        <h4 class="weather">${data.weather[0].main}</h4>
-        <h4 class="desc">${data.weather[0].description}</h4>
-        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
-        <h1>${data.main.temp} &#176;</h1>
-        <div class="temp-container">
-            <div>
-                <h4 class="title">min</h4>
-                <h4 class="temp">${data.main.temp_min}&#176;</h4>
-            </div>
-            <div>
-                <h4 class="title">max</h4>
-                <h4 class="temp">${data.main.temp_max}&#176;</h4>
-            </div>
-        </div>
-        `;
-      })
-      //If city name is NOT valid
-      .catch(() => {
-        result.innerHTML = `<h3 class="msg">City not found</h3>`;
-      });
-  }
+let weather = {
+  apiKey: "4e323e25a41eb88616b82e8715147146",
+  fetchWeather: function (city) {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&limit&units=metrics=5&appid=4e323e25a41eb88616b82e8715147146"
+    )
+      .then((response) => response.json())
+      .then((data) => this.displayWeather(data))
+      .then(
+        fetch(
+          "https://api.openweathermap.org/data/2.5/forecast?lat=39.7392&lon=-104.984&limit&units=metrics=5&appid=4e323e25a41eb88616b82e8715147146"
+        )
+          .then((data) => {
+            return data.json();
+          })
+          .then((data) => {
+            console.log(data);
+            const forecastDivs = document.querySelectorAll(".forecast");
+            for (let i = 0; i < forecastDivs.length; i++) {
+              forecastDivs[i].innerHTML = "";
+              const index = i * 8 + 4;
+              const forecastDate = new Date(data.list[index].dt * 1000);
+              const day = forecastDate.getDate();
+              const month = forecastDate.getMonth() + 1;
+              const year = forecastDate.getFullYear();
+              const forecastDateHeader = document.createElement("h4");
+              const forecastImg = document.createElement("img");
+              const forecastTemp = document.createElement("p");
+              const forecastWind = document.createElement("p");
+              const forecastHum = document.createElement("p");
+              forecastDateHeader.innerHTML =
+                "(" + day + "/" + month + "/" + year + ")";
+              forecastTemp.innerHTML =
+                (data.list[index].main.temp - 273.15).toFixed(2) + "°C";
+              forecastHum.innerHTML = data.list[index].main.humidity + "%";
+              forecastWind.innerHTML = data.list[index].wind.speed + " MPH";
+              forecastDateHeader.setAttribute("class", "forecastDateHeader");
+              forecastImg.setAttribute(
+                "src",
+                "https://openweathermap.org/img/wn/" +
+                data.list[index].weather[0].icon +
+                "@2x.png"
+                );
+                forecastImg.setAttribute("class", "forecastImg");
+                forecastTemp.setAttribute("class", "forecastTemp");
+                forecastHum.setAttribute("class", "forecastHum");
+                forecastWind.setAttribute("class", "forecastWind");
+                forecastDivs[i].append(forecastDateHeader);
+                forecastDivs[i].append(forecastImg);
+                forecastDivs[i].append(forecastTemp);
+                forecastDivs[i].append(forecastHum);
+                forecastDivs[i].append(forecastWind);
+            }
+          })
+      );
+  },
+  displayWeather: function (data) {
+    const { name } = data;
+    const { icon, description } = data.weather[0];
+    const { temp, humidity } = data.main;
+    const { speed } = data.wind;
+    document.querySelector(".city").innerText = "Weather in " + name;
+    document.querySelector(".icon").src =
+      "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".description").innerText = description;
+    document.querySelector(".temp").innerText =
+      (temp - 273.15).toFixed(2) + "°C";
+    document.querySelector(".humidity").innerText =
+      "Humidity: " + humidity + "%";
+    document.querySelector(".wind").innerText =
+      "Wind speed: " + speed + " mp/h";
+    document.querySelector(".weather").classList.remove("loading");
+  },
+  search: function () {
+    this.fetchWeather(document.querySelector(".search-bar").value);
+  },
 };
-searchBtn.addEventListener("click", getWeather);
-window.addEventListener("load", getWeather);
+
+document.querySelector(".search button").addEventListener("click", function () {
+  weather.search();
+});
+document
+  .querySelector(".search-bar")
+  .addEventListener("keyup", function (event) {
+    if (event.key == "Enter") {
+      weather.search();
+    }
+  });
+
+document
+  .querySelector(".search-bar")
+  .addEventListener("keyup", function (event) {
+    if (event.key == "Enter") {
+      weather.search();
+    }
+  });
+
+weather.fetchWeather("Denver");
