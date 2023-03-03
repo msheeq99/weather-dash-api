@@ -1,44 +1,56 @@
-const timeEl = document.getElementById('time');
-const dateEl = document.getElementById('date');
-const currentWeatherItemsEl = document.getElementById('current-weather-items');
-const timezone = document.getElementById('time-zone');
-const countryEl = document.getElementById('country');
-const weatherForecastEl = document.getElementById('weather-forecast');
-const currentTempEl = document.getElementById('current-temp');
+//Assign the copied API key to the 'key' variable
+key = "04b3d357a14907eeb4df2fa9bad23dd9";
 
+let result = document.getElementById("result");
+let searchBtn = document.getElementById("search-btn");
+let cityRef = document.getElementById("city");
 
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
-
-setInterval(() => {
-    const time = new Date();
-    const month = time.getMonth();
-    const date = time.getDate();
-    const day = time.getDay();
-    const hour = time.getHours();
-    const hoursIn12HrFormat = hour >= 13 ? hour %12: hour
-    const minutes = time.getMinutes();
-    const ampm = hour >=12 ? 'PM' : 'AM'
-
-    timeEl.innerHTML = (hoursIn12HrFormat < 10? '0'+hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10? '0'+minutes: minutes)+ ' ' + `<span id="am-pm">${ampm}</span>`
-
-    dateEl.innerHTML = days[day] + ', ' + date+ ' ' + months[month]
-
-}, 1000);
-
-getWeatherData()
-function getWeatherData () {
-    navigator.geolocation.getCurrentPosition((success) => {
-        
-        let {latitude, longitude } = success.coords;
-
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-
-        console.log(data)
-        showWeatherData(data);
-        })
-
-    })
-}
+//Function to fetch weather details from api and display them
+let getWeather = () => {
+  let cityValue = cityRef.value;
+  //If input field is empty
+  if (cityValue.length == 0) {
+    result.innerHTML = `<h3 class="msg">Please enter a city name</h3>`;
+  }
+  //If input field is NOT empty
+  else {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`;
+    //Clear the input field
+    cityRef.value = "";
+    fetch(url)
+      .then((resp) => resp.json())
+      //If city name is valid
+      .then((data) => {
+        console.log(data);
+        console.log(data.weather[0].icon);
+        console.log(data.weather[0].main);
+        console.log(data.weather[0].description);
+        console.log(data.name);
+        console.log(data.main.temp_min);
+        console.log(data.main.temp_max);
+        result.innerHTML = `
+        <h2>${data.name}</h2>
+        <h4 class="weather">${data.weather[0].main}</h4>
+        <h4 class="desc">${data.weather[0].description}</h4>
+        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+        <h1>${data.main.temp} &#176;</h1>
+        <div class="temp-container">
+            <div>
+                <h4 class="title">min</h4>
+                <h4 class="temp">${data.main.temp_min}&#176;</h4>
+            </div>
+            <div>
+                <h4 class="title">max</h4>
+                <h4 class="temp">${data.main.temp_max}&#176;</h4>
+            </div>
+        </div>
+        `;
+      })
+      //If city name is NOT valid
+      .catch(() => {
+        result.innerHTML = `<h3 class="msg">City not found</h3>`;
+      });
+  }
+};
+searchBtn.addEventListener("click", getWeather);
+window.addEventListener("load", getWeather);

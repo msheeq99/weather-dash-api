@@ -1,97 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css" integrity="sha512-JQksK36WdRekVrvdxNyV3B0Q1huqbTkIQNbz1dlcFVgNynEMRl0F8OSqOGdVppLUDIvsOejhr/W5L3G/b3J+8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <meta name="description" content="Weather application - user can search by city to find the current weather plus a 5 day forecast anywhere in world. Uses OpenWeather API."/>
-    <meta name="Author" content="Mohamud Sheeq" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
-    <title>Weather Dashboard</title>
-</head>
-<body>
-
-    <div class="container">
-        <div class="current-info">
-
-            <div class="date-container">
-                <div class="time" id="time">
-                    12:30 <span id="am-pm">PM</span>
-                </div>
-                <div class="date" id="date">
-                    Monday, 25 May
-                </div>
-
-                <div class="others" id="current-weather-items">
-                    
-                    
-                </div>
-            </div>
-
-            <div class="place-container">
-                <div class="time-zone" id="time-zone">Asia/Kolkata</div>
-                <div id="country" class="country">IN</div>
-            </div>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/Assets/css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="container">
+        <div class="search-container">
+          <input
+            type="text"
+            placeholder="Enter a city name"
+            id="city"
+            value="mumbai"
+          />
+          <button id="search-btn">Search</button>
         </div>
-
-        
+        <div id="result"></div>
+      </div>
     </div>
-
-    <div class="future-forecast">
-        <div class="today" id="current-temp">
-            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-            <div class="other">
-                <div class="day">Monday</div>
-                <div class="temp">Night - 25.6&#176; C</div>
-                <div class="temp">Day - 35.6&#176; C</div>
-            </div>
-        </div>
-
-        <div class="weather-forecast" id="weather-forecast">
-            <div class="weather-forecast-item">
-                <div class="day">Tue</div>
-                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - 25.6&#176; C</div>
-                <div class="temp">Day - 35.6&#176; C</div>
-            </div>
-            <div class="weather-forecast-item">
-                <div class="day">Wed</div>
-                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - 25.6&#176; C</div>
-                <div class="temp">Day - 35.6&#176; C</div>
-            </div>
-            <div class="weather-forecast-item">
-                <div class="day">Thur</div>
-                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - 25.6&#176; C</div>
-                <div class="temp">Day - 35.6&#176; C</div>
-            </div>
-            <div class="weather-forecast-item">
-                <div class="day">Fri</div>
-                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - 25.6&#176; C</div>
-                <div class="temp">Day - 35.6&#176; C</div>
-            </div>
-            <div class="weather-forecast-item">
-                <div class="day">Sat</div>
-                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - 25.6&#176; C</div>
-                <div class="temp">Day - 35.6&#176; C</div>
-            </div>
-
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <!-- Script -->
+    <script src="key.js"></script>
     <script src="/Assets/js/script.js"></script>
-
-</body>
-
-
+  </body>
 </html>

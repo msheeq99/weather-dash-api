@@ -1,193 +1,148 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
-
-*{
+* {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    background:url('https://images.unsplash.com/photo-1621274403997-37aace184f49?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1');
-    background-repeat: no-repeat;
-    background-size:cover;
-    overflow:hidden;
+    font-family: "Poppins", sans-serif;
+  }
+  :root {
+    --white: #ffffff;
+    --off-white: #e5e5e5;
+    --transp-white-1: rgba(255, 255, 255, 0.25);
+    --transp-white-2: rgba(255, 255, 255, 0.1);
+    --blue-1: #62b8f5;
+    --blue-2: #4475ef;
+    --shadow: rgba(3, 46, 87, 0.2);
+  }
+  body {
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
-}
-
-.container{
-    padding: 20px 70px;
-    color:#fff;
-}
-
-.current-info{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.date-container{
-    font-weight: 100;
-}
-.date-container .time{
-    font-size: 70px;
-}
-
-.date-container #am-pm{
-    font-size: 30px;
-    margin-left: 20px;
-}
-
-.date-container .date{
-    font-size: 30px;
-}
-
-.place-container{
-    text-align: end;
-}
-
-.place-container .time-zone{
-    font-size: 30px;
-    font-weight: 100;
-}
-
-.place-container .country{
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.current-info .others{
-    display: flex;
-    flex-direction: column;
-    background: rgba(24,24,27, 0.6);
-    padding:20px;
-    border-radius: 10px;
-    margin: 10px 0;
-    border: 1px solid #eee;
-}
-
-.current-info .others .weather-item{
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.future-forecast{
-    background: rgba(24,24,27,0.8);
-    padding: 25px;
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    color:white;
+    background: linear-gradient(135deg, var(--blue-1), var(--blue-2));
+  }
+  .wrapper {
+    font-size: 16px;
+    width: 90vw;
+    max-width: 28em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+  .container {
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    overflow-y: hidden;
-}
-
-.future-forecast .today{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding:15px;
-    padding-right: 40px;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.2)
-}
-
-.future-forecast .today .day{
-    padding: 5px 15px;
-    background: #3c3c44;
-    border-radius: 50px;
+    background: var(--transp-white-2);
+    backdrop-filter: blur(10px);
+    padding: 3em 1.8em;
+    border: 2px solid var(--transp-white-2);
+    border-radius: 0.6em;
+    box-shadow: 0 1.8em 3.7em var(--shadow);
     text-align: center;
-}
-
-.future-forecast .today .temp{
-    font-size: 18px;
-    padding-top: 15px;
-}
-
-.future-forecast .weather-forecast{
+  }
+  .shape {
+    position: absolute;
+    background-color: var(--transp-white-1);
+    backdrop-filter: blur(1.2em);
+    border: 2px solid var(--transp-white-2);
+    border-radius: 50%;
+  }
+  .shape-1 {
+    height: 13em;
+    width: 13em;
+    right: -6.5em;
+    top: 1.8em;
+  }
+  .shape-2 {
+    height: 11em;
+    width: 11em;
+    bottom: -3.7em;
+    left: -2.5em;
+  }
+  .search-container {
+    font-size: 1em;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    gap: 1.25em;
+  }
+  .search-container input,
+  .search-container button {
+    outline: none;
+    font-size: 1em;
+    border: none;
+  }
+  .search-container input {
+    padding: 0.7em;
+    background-color: transparent;
+    border-bottom: 2px solid var(--transp-white-1);
+    color: var(--white);
+    font-weight: 300;
+  }
+  .search-container input::placeholder {
+    color: var(--off-white);
+  }
+  .search-container input:focus {
+    border-color: var(--white);
+  }
+  .search-container button {
+    color: var(--blue-2);
+    background-color: var(--white);
+    border-radius: 0.3em;
+  }
+  #result h2 {
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    margin: 1.25em 0;
+  }
+  .weather,
+  .desc {
+    color: var(--off-white);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 2em;
+  }
+  .weather {
+    margin-top: -0.7em;
+  }
+  #result img {
+    margin: 0.6em 0 0 0;
+    width: 6.2em;
+    filter: drop-shadow(0 1.8em 3.7em var(--shadow));
+  }
+  #result h1 {
+    font-size: 4em;
+    margin: 0.3em 0 0.7em 0;
+    line-height: 0;
+    font-weight: 400;
+    color: var(--white);
+  }
+  .temp-container {
     display: flex;
-}
-
-.weather-forecast .weather-forecast-item{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    margin: 0 10px;
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.2)
-}
-
-.weather-forecast .weather-forecast-item .day{
-    padding: 5px 15px;
-    background: #3C3C44;
-    border-radius: 50px;
-    text-align: center;
-}
-
-.weather-forecast .weather-forecast-item .temp{
-    font-weight: 100;
-    font-size: 12px;
-}
-
-
-@media only screen and  (max-width:730px){
-    
-    .container{
-        padding: 20px;
+  }
+  .temp-container div {
+    padding: 0.3em 1em;
+  }
+  .temp-container div:first-child {
+    border-right: 1px solid var(--transp-white-1);
+  }
+  .temp-container .title {
+    font-weight: 600;
+    color: var(--white);
+  }
+  .temp-container .temp {
+    font-weight: 300;
+    color: var(--off-white);
+  }
+  .msg {
+    margin-top: 1.8em;
+    color: var(--white);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  @media screen and (max-width: 450px) {
+    .wrapper {
+      font-size: 14px;
     }
-    
-    .future-forecast{
-        justify-content: start;
-        align-items: none;
-        overflow-y: scroll;
-    }
-
-    .future-forecast .today .temp{
-        font-size: 16px;
-    }
-
-    .date-container .time{
-        font-size: 50px;
-    }
-
-    .date-container #am-pm{
-        font-size: 20px;
-    }
-
-    .date-container .date{
-        font-size: 20px;
-    }
-
-    .place-container{
-        text-align: end;
-        margin-top: 15px;
-    }
-
-    .place-container .time-zone{
-        font-size: 20px;
-    }
-
-    .current-info .others{
-        padding: 12px;
-    }
-
-    .current-info .others .weather-item{
-        font-size: 14px;
-    }
-
-}
-
-@media only screen and (max-width: 1400px){
-    .future-forecast{
-        justify-content: start;
-        align-items: none;
-        overflow-x: scroll;
-    }
-}
+  }
